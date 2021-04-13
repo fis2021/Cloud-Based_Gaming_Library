@@ -12,3 +12,7 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .java-version
+# Uml and Doc
+Cloud-Based Gaming Library.iml
+
+Cloud-based_Gaming_Library.docx
