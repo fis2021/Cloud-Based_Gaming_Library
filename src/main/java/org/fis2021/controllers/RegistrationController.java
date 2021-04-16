@@ -20,7 +20,7 @@ public class RegistrationController {
 
     @FXML
     public void initialize() {
-        role.getItems().addAll("User", "Moderator", "Admin");
+        role.getItems().addAll("User", "Developer", "Admin");
     }
 
     @FXML
