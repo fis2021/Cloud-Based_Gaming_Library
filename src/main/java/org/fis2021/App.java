@@ -17,7 +17,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         initDirectory();
         UserService.initDatabase();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         stage.setTitle("Cloud-Based Gaming Library - Registration");
         stage.setScene(new Scene(root, 640, 480));
         stage.show();
