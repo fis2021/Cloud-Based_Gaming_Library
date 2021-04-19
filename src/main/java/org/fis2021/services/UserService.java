@@ -1,9 +1,13 @@
 package org.fis2021.services;
 
+
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.fis2021.exceptions.UsernameAlreadyExistsException;
+import org.fis2021.exceptions.UsernameNotFoundException;
 import org.fis2021.models.User;
+import org.dizitart.no2.objects.Cursor;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -36,12 +40,29 @@ public class UserService {
                 throw new UsernameAlreadyExistsException(username);
         }
     }
+
+    public static User getUser(String username) throws UsernameNotFoundException {
+        Cursor<User> cursor = userRepository.find(ObjectFilters.eq("username",username));
+        for(User user : cursor)
+            return user;
+        throw new UsernameNotFoundException(username);
+    }
+
+    public static String getHashedPassword(String username) throws UsernameNotFoundException {
+        return getUser(username).getPassword();
+    }
+
     private static void checkUserOrPasswordIsNull(String username, String password) throws UsernameAlreadyExistsException{
         if(username.equals("")  || password.equals(""))
             throw new UsernameAlreadyExistsException(username,password);
     }
 
-    private static String encodePassword(String salt, String password) {
+    private static void checkUserOrPasswordIsNullLogin(String username, String password) throws UsernameNotFoundException{
+        if(username.equals("") || username.isEmpty())
+            throw new UsernameNotFoundException(username,password);
+    }
+
+    public static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
