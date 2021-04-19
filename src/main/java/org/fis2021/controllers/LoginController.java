@@ -1,13 +1,18 @@
 package org.fis2021.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.fis2021.exceptions.UsernameNotFoundException;
 import org.fis2021.services.UserService;
 
+import java.io.IOException;
 
 
 public class LoginController {
@@ -32,6 +37,21 @@ public class LoginController {
                 loginMessage.setText("You have been successfully logged in!");
             }
         } catch(UsernameNotFoundException e) {loginMessage.setText(e.getMessage());}
+
+    }
+
+    @FXML
+    public void goToRegisterAction() {
+
+        try {
+            Stage stage = (Stage) loginMessage.getScene().getWindow();
+
+            Parent root_login = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
+            stage.setTitle("CBLG - Login");
+            stage.setScene(new Scene(root_login,1080,560));
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

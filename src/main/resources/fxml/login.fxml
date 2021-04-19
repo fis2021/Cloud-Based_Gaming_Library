@@ -34,7 +34,7 @@
             </font>
         </Label>
         <TextField fx:id="usernameField" layoutX="462.0" layoutY="299.0" prefHeight="30.0" prefWidth="160.0" />
-        <Button layoutX="382.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleLoginAction" prefHeight="40.0" prefWidth="80.0" text="Login">
+        <Button layoutX="483.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleLoginAction" prefHeight="40.0" prefWidth="100.0" text="Login">
             <font>
                 <Font size="20.0" />
             </font>
@@ -43,5 +43,10 @@
             <font>
                 <Font size="20.0" />
             </font></Text>
+      <Button layoutX="260.0" layoutY="440.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" onAction="#goToRegisterAction" text="Register">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
     </children>
 </Pane>
