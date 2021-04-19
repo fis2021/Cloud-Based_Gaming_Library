@@ -19,7 +19,7 @@ public class App extends Application {
         UserService.initDatabase();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         stage.setTitle("Cloud-Based Gaming Library - Registration");
-        stage.setScene(new Scene(root, 1280, 560));
+        stage.setScene(new Scene(root, 840, 560));
         stage.setResizable(false);
         stage.show();
     }
