@@ -9,7 +9,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.fis2021.exceptions.UsernameAlreadyExistsException;
 import org.fis2021.exceptions.UsernameNotFoundException;
+import org.fis2021.models.User;
 import org.fis2021.services.UserService;
 
 import java.io.IOException;
@@ -35,6 +37,7 @@ public class LoginController {
             String DBPassword = UserService.getHashedPassword(username);
             if(DBPassword.equals(CryptedPassword)){
                 loginMessage.setText("You have been successfully logged in!");
+                FirstPage();
             }
         } catch(UsernameNotFoundException e) {loginMessage.setText(e.getMessage());}
 
@@ -47,11 +50,30 @@ public class LoginController {
             Stage stage = (Stage) loginMessage.getScene().getWindow();
 
             Parent root_login = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
-            stage.setTitle("CBLG - Login");
+            stage.setTitle("CBGL - Login");
             stage.setScene(new Scene(root_login,1080,560));
         } catch(IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @FXML
+    private void FirstPage() {
+        try{
+            User user1 = UserService.getUser(usernameField.getText());
+            Stage stage = (Stage) loginMessage.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/FirstPage.fxml"));
+            Parent homeRoot = loader.load();
+            FirstPageController controller = loader.getController();
+            controller.setUser(user1);
+            UserService.closeDatabase();
+            Scene scene = new Scene(homeRoot, 840, 560);
+            stage.setTitle("CBGL - FirstPage");
+            stage.setScene(scene);
+        } catch (UsernameNotFoundException e){
+            loginMessage.setText(e.getMessage());
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
