@@ -9,7 +9,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.fis2021.exceptions.UsernameAlreadyExistsException;
 import org.fis2021.exceptions.UsernameNotFoundException;
 import org.fis2021.models.User;
 import org.fis2021.services.UserService;
@@ -37,9 +36,10 @@ public class LoginController {
             String DBPassword = UserService.getHashedPassword(username);
             if(DBPassword.equals(CryptedPassword)){
                 loginMessage.setText("You have been successfully logged in!");
-                FirstPage();
+                firstPage();
             }
         } catch(UsernameNotFoundException e) {loginMessage.setText(e.getMessage());}
+
 
     }
 
@@ -58,7 +58,7 @@ public class LoginController {
     }
 
     @FXML
-    private void FirstPage() {
+    private void firstPage() {
         try{
             User user1 = UserService.getUser(usernameField.getText());
             Stage stage = (Stage) loginMessage.getScene().getWindow();
@@ -66,10 +66,10 @@ public class LoginController {
             Parent homeRoot = loader.load();
             FirstPageController controller = loader.getController();
             controller.setUser(user1);
-            UserService.closeDatabase();
-            Scene scene = new Scene(homeRoot, 840, 560);
+            Scene scene = new Scene(homeRoot, 1280, 718);
             stage.setTitle("CBGL - FirstPage");
             stage.setScene(scene);
+            UserService.closeDatabase();
         } catch (UsernameNotFoundException e){
             loginMessage.setText(e.getMessage());
         } catch (IOException e){

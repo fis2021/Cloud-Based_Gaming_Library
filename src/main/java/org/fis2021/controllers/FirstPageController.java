@@ -3,7 +3,8 @@ package org.fis2021.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.fis2021.models.User;
-
+import java.io.IOException;
+import javafx.scene.control.*;
 
 public class FirstPageController {
 @FXML
@@ -19,5 +20,7 @@ public class FirstPageController {
     {
         return user;
     }
+
+
 
 }
