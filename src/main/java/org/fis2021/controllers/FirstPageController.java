@@ -5,9 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.fis2021.models.User;
 import java.io.IOException;
@@ -26,9 +24,36 @@ public class FirstPageController {
     }
 
     @FXML
-    public void handleStoreAction(){
+    public void handleStoreAction() {
         firstPageMessage.setText("Store page will load now!");
         openStore(user);
+    }
+
+    @FXML
+    public void handleLibraryAction(){
+        firstPageMessage.setText("Library page will load now!");
+        openLibrary(user);
+    }
+
+    @FXML
+    private void openLibrary(User u){
+        try{
+            Stage stage = (Stage) firstPageMessage.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LibraryPage.fxml"));
+            Parent homeRoot = loader.load();
+            LibraryController controller = loader.getController();
+            controller.setUser(u);
+            Scene scene = new Scene(homeRoot, 1280, 718);
+            stage.setTitle("CBGL - LibraryPage");
+            stage.setScene(scene);
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public User getUser()
+    {
+        return user;
     }
 
     @FXML
