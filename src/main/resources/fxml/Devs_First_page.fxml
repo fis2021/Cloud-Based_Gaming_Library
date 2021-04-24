@@ -33,7 +33,7 @@
                 </Lighting>
             </effect>
         </Button>
-        <Button layoutX="815.0" layoutY="310.0" mnemonicParsing="false" text="Go to Store">
+        <Button layoutX="815.0" layoutY="310.0" mnemonicParsing="false" text="Go to Store" >
             <font>
                 <Font size="40.0" />
             </font>
