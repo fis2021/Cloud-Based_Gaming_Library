@@ -18,7 +18,7 @@
             </image>
         </ImageView>
 
-        <Button layoutX="211.0" layoutY="309.0" mnemonicParsing="false" text="Go to Library">
+        <Button layoutX="211.0" layoutY="309.0" mnemonicParsing="false" text="Go to Library" >
             <font>
                 <Font size="40.0" />
             </font>
