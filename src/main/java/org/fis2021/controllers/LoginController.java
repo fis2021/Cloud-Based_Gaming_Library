@@ -62,14 +62,36 @@ public class LoginController {
         try{
             User user1 = UserService.getUser(usernameField.getText());
             Stage stage = (Stage) loginMessage.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/FirstPage.fxml"));
-            Parent homeRoot = loader.load();
-            FirstPageController controller = loader.getController();
-            controller.setUser(user1);
+            FXMLLoader loader;
+            Parent homeRoot;
+            switch (user1.getRole()){
+
+                case "Developer":
+                    loader = new FXMLLoader(getClass().getResource("/fxml/Devs_First_Page.fxml"));
+                    homeRoot = loader.load();
+                   DevsFirstPageController controller = loader.getController();
+                    controller.setUser(user1);
+                     break;
+                case "Admin":
+                     loader = new FXMLLoader(getClass().getResource("/fxml/Admins_First_Page.fxml"));
+                    homeRoot = loader.load();
+                  AdminsFirstPageController  controller2 = loader.getController();
+                    controller2.setUser(user1);
+                     break;
+                case "User":
+                    loader = new FXMLLoader(getClass().getResource("/fxml/FirstPage.fxml"));
+                    homeRoot = loader.load();
+                    FirstPageController controller3 = loader.getController();
+                    controller3.setUser(user1);
+                    break;
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + user1.getRole());
+            }
             Scene scene = new Scene(homeRoot, 1280, 718);
             stage.setTitle("CBGL - FirstPage");
             stage.setScene(scene);
-            UserService.closeDatabase();
+
         } catch (UsernameNotFoundException e){
             loginMessage.setText(e.getMessage());
         } catch (IOException e){
