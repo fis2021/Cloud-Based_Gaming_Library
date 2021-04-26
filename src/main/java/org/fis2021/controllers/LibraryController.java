@@ -14,8 +14,7 @@ import java.io.IOException;
 
 public class LibraryController {
     private User user;
-    public void setUser(User u)
-    {
+    public void setUser(User u) {
         user = u;
     }
 }
