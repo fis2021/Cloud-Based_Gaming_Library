@@ -35,12 +35,12 @@ public class StoreService {
         database.close();
     }
 
-    public static void addGame(String gameName, NitriteId userId) throws GameAlreadyInStoreException {
+    public static void addGame(String gameName, int userId) throws GameAlreadyInStoreException {
         checkGameInStore(gameName,userId);
         storeRepository.insert(new Store(gameName, userId));
     }
 
-    private static void checkGameInStore(String gameName, NitriteId userId) throws GameAlreadyInStoreException {
+    private static void checkGameInStore(String gameName, int userId) throws GameAlreadyInStoreException {
         Store s = new Store(gameName,userId);
 
         for (Store store1 : storeRepository.find()) {

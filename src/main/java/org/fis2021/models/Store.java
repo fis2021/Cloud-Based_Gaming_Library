@@ -7,10 +7,8 @@ import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.dizitart.no2.objects.Cursor;
 public class Store {
     private String gameName;
-    private NitriteId userId;
-    private int downloads;
-
-    public Store(String gameName, NitriteId userId)
+    private int userId;
+    public Store(String gameName, int userId)
     {
         this.gameName = gameName;
         this.userId = userId;
@@ -21,13 +19,10 @@ public class Store {
         return gameName;
     }
 
-    public NitriteId getUserId(){
+    public int getUserId(){
         return  userId;
     }
 
-    public int getDownloads(){
-        return downloads;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -36,7 +31,7 @@ public class Store {
         if (o == null || getClass() != o.getClass())
             return false;
         Store store = (Store) o;
-        return gameName.equals(store.gameName) && userId.equals(store.userId);
+        return gameName.equals(store.gameName) && userId==store.userId;
     }
 
     @Override
