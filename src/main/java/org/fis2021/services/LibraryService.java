@@ -35,12 +35,12 @@ public class LibraryService {
         database.close();
     }
 
-    public static void addGame(String gameName, NitriteId userId) throws GameAlreadyExistsException {
+    public static void addGame(String gameName, int userId) throws GameAlreadyExistsException {
         checkGameAlreadyExist(gameName,userId);
         libRepository.insert(new Library(gameName, userId));
     }
 
-    private static void checkGameAlreadyExist(String gameName, NitriteId userId) throws GameAlreadyExistsException {
+    private static void checkGameAlreadyExist(String gameName, int userId) throws GameAlreadyExistsException {
         Library l = new Library(gameName,userId);
 
         for (Library lib : libRepository.find()) {
@@ -48,4 +48,6 @@ public class LibraryService {
                 throw new GameAlreadyExistsException(gameName);
         }
     }
+
+
 }

@@ -2,19 +2,20 @@ package org.fis2021.models;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteId;
+import org.dizitart.no2.objects.Id;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.dizitart.no2.objects.Cursor;
 public class Library {
     private String gameName;
-    private NitriteId userId;
+    private int userId;
     private int downloads;
 
     public Library(){
 
     }
 
-    public Library(String gameName, NitriteId userId)
+    public Library(String gameName, int userId)
     {
         this.gameName = gameName;
         this.userId = userId;
@@ -25,7 +26,7 @@ public class Library {
         return gameName;
     }
 
-    public NitriteId getUserId(){
+    public int getUserId(){
         return  userId;
     }
 
@@ -38,7 +39,7 @@ public class Library {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Library library = (Library) o;
-        return gameName.equals(library.gameName) && userId.equals(library.userId);
+        return gameName.equals(library.gameName) && userId == library.userId;
     }
 
     @Override
