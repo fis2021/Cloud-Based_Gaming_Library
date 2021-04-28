@@ -26,8 +26,7 @@ public class LibraryController {
     private Text libMessage;
 
     private User user;
-    public void setUser(User u)
-    {
+    public void setUser(User u) {
         user = u;
 
     }
