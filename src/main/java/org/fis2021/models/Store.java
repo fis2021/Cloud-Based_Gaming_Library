@@ -8,7 +8,6 @@ import org.dizitart.no2.objects.Cursor;
 public class Store {
     private String gameName;
     private NitriteId userId;
-    private int downloads;
 
     public Store(String gameName, NitriteId userId)
     {
@@ -25,9 +24,6 @@ public class Store {
         return  userId;
     }
 
-    public int getDownloads(){
-        return downloads;
-    }
 
     @Override
     public boolean equals(Object o) {
