@@ -57,6 +57,8 @@ public class UserService {
         throw new UsernameNotFoundException(username);
     }
 
+
+
     public static String getHashedPassword(String username) throws UsernameNotFoundException {
         return getUser(username).getPassword();
     }
