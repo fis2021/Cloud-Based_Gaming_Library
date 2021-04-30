@@ -1,18 +1,14 @@
 package org.fis2021.services;
 
 import org.dizitart.no2.Nitrite;
-import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.fis2021.exceptions.GameAlreadyExistsException;
-import org.fis2021.exceptions.UsernameAlreadyExistsException;
+import org.fis2021.exceptions.NoGameFoundException;
 import org.fis2021.models.Library;
 import org.dizitart.no2.objects.Cursor;
-import org.fis2021.models.User;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import static org.fis2021.services.FileSystemService.getPathToFile;
@@ -35,12 +31,12 @@ public class LibraryService {
         database.close();
     }
 
-    public static void addGame(String gameName, NitriteId userId) throws GameAlreadyExistsException {
+    public static void addGame(String gameName, int userId) throws GameAlreadyExistsException {
         checkGameAlreadyExist(gameName,userId);
         libRepository.insert(new Library(gameName, userId));
     }
 
-    private static void checkGameAlreadyExist(String gameName, NitriteId userId) throws GameAlreadyExistsException {
+    private static void checkGameAlreadyExist(String gameName, int userId) throws GameAlreadyExistsException {
         Library l = new Library(gameName,userId);
 
         for (Library lib : libRepository.find()) {
@@ -48,4 +44,15 @@ public class LibraryService {
                 throw new GameAlreadyExistsException(gameName);
         }
     }
+
+    public static ArrayList<String> getGame(int userId) throws NoGameFoundException {
+         ArrayList<String> l = new ArrayList<String>();
+        Cursor<Library> cursor = libRepository.find(ObjectFilters.eq("userId",userId));
+        for(Library lib : cursor)
+            l.add(lib.getGameName());
+        return l;
+
+    }
+
+
 }
