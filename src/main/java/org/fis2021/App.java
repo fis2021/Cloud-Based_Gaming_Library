@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import org.fis2021.models.Library;
 import org.fis2021.services.FileSystemService;
 import org.fis2021.services.LibraryService;
+import org.fis2021.services.StoreService;
 import org.fis2021.services.UserService;
 
 import java.nio.file.Files;
@@ -20,6 +21,7 @@ public class App extends Application {
         initDirectory();
         UserService.initDatabase();
         LibraryService.initDatabase();
+        StoreService.initDatabase();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         stage.setTitle("Cloud-Based Gaming Library - Login");
         stage.setScene(new Scene(root, 840, 560));

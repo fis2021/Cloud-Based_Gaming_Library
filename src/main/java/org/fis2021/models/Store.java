@@ -7,31 +7,29 @@ import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.dizitart.no2.objects.Cursor;
 public class Store {
     private String gameName;
-    private int userId;
-    public Store(String gameName, int userId)
+    private int devId;
+
+    public Store(){}
+
+    public Store(String gameName,int devId)
     {
         this.gameName = gameName;
-        this.userId = userId;
+        this.devId = devId;
     }
 
     public String getGameName()
     {
         return gameName;
     }
-
-    public int getUserId(){
-        return  userId;
-    }
+    public int getDevId(){return devId;}
 
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Store store = (Store) o;
-        return gameName.equals(store.gameName) && userId==store.userId;
+        return gameName.equals(store.gameName) && devId == store.devId;
     }
 
     @Override

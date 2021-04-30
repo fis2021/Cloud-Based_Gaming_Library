@@ -9,7 +9,7 @@ import org.dizitart.no2.objects.Cursor;
 public class Library {
     private String gameName;
     private int userId;
-    private int downloads;
+
 
     public Library(){
 
@@ -30,9 +30,6 @@ public class Library {
         return  userId;
     }
 
-    public int getDownloads(){
-        return downloads;
-    }
 
     @Override
     public boolean equals(Object o) {
