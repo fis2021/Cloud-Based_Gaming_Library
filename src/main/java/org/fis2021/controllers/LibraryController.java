@@ -3,10 +3,6 @@ package org.fis2021.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import org.dizitart.no2.Nitrite;
-import org.dizitart.no2.objects.ObjectRepository;
-import org.dizitart.no2.objects.filters.ObjectFilters;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,11 +11,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.fis2021.exceptions.GameAlreadyExistsException;
 import org.fis2021.exceptions.NoGameFoundException;
-import org.fis2021.exceptions.UsernameAlreadyExistsException;
-import org.fis2021.models.Library;
 import org.fis2021.models.User;
 import org.fis2021.services.LibraryService;
-import org.fis2021.services.UserService;
+
 
 import java.io.IOException;
 import java.util.ArrayList;

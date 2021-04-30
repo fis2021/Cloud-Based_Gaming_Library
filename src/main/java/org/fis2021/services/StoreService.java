@@ -11,6 +11,7 @@ import org.fis2021.models.Store;
 import org.dizitart.no2.objects.Cursor;
 import org.fis2021.models.User;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -21,6 +22,7 @@ public class StoreService {
     private static ObjectRepository<Store> storeRepository;
 
     private static Nitrite database;
+    private static int index = 0;
 
     public static void initDatabase(){
         Nitrite database = Nitrite.builder()
@@ -37,6 +39,7 @@ public class StoreService {
     public static void addGame(String gameName, int devId) throws GameAlreadyInStoreException {
         checkGameInStore(gameName,devId);
         storeRepository.insert(new Store(gameName,devId));
+        index ++;
     }
     public static ArrayList<String> getGame(int devId) {
         ArrayList<String> s = new ArrayList<String>();
@@ -47,6 +50,15 @@ public class StoreService {
 
     }
 
+    public static ArrayList<String> getAllGames()
+    {
+        ArrayList<String> list = new ArrayList<>();
+        Cursor<Store> cursor = storeRepository.find();
+        for(Store s1 : cursor)
+            list.add(s1.getGameName());
+        return list;
+    }
+
     private static void checkGameInStore(String gameName,int devId) throws GameAlreadyInStoreException {
         Store s = new Store(gameName,devId);
 
@@ -54,5 +66,10 @@ public class StoreService {
             if (Objects.equals(s, store1))
                 throw new GameAlreadyInStoreException(gameName);
         }
+    }
+
+    public static int getIndex()
+    {
+        return index;
     }
 }
