@@ -38,6 +38,9 @@ public class LibraryController {
     @FXML
     private Label userName;
 
+    @FXML
+    private TextField searchField;
+
     private User user;
 
     public LibraryController() throws NoGameFoundException {
@@ -64,11 +67,51 @@ public class LibraryController {
 
 
     @FXML
-    public void listInit() throws NoGameFoundException {
+    public void listInit() {
         list.removeAll(list);
         ArrayList<String> libs = LibraryService.getGame(user.getId());
         list.addAll(libs);
         gameslist.getItems().addAll(list);
+    }
+
+    @FXML
+    public void handleStoreAction() {
+        libMessage.setText("Store page will load now!");
+        openStore(user);
+    }
+
+
+    @FXML
+    public void searchList() throws NoGameFoundException{
+        list.removeAll(list);
+        ArrayList<String> libs = LibraryService.getSearchedGame(searchField.getText(), user.getId());
+        if(libs == null)
+            throw new NoGameFoundException();
+        else
+        {
+            list.addAll(libs);
+            gameslist.getItems().addAll(list);
+        }
+
+    }
+
+    @FXML
+    private void openStore(User u) {
+        try{
+            Stage stage = (Stage) libMessage.getScene().getWindow();
+            FXMLLoader loader;
+            Parent homeRoot;
+            loader = new FXMLLoader(getClass().getResource("/fxml/StorePage.fxml"));
+            homeRoot = loader.load();
+            StoreController controller = loader.getController();
+            controller.setUser(u);
+            Scene scene = new Scene(homeRoot, 1280, 718);
+            stage.setTitle("CBGL - StorePage");
+            stage.setScene(scene);
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 }

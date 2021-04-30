@@ -1,5 +1,7 @@
 package org.fis2021.services;
 
+import org.dizitart.no2.Filter;
+import org.dizitart.no2.FindOptions;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
@@ -9,6 +11,7 @@ import org.fis2021.models.Library;
 import org.dizitart.no2.objects.Cursor;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 import static org.fis2021.services.FileSystemService.getPathToFile;
@@ -45,11 +48,24 @@ public class LibraryService {
         }
     }
 
-    public static ArrayList<String> getGame(int userId) throws NoGameFoundException {
+    public static ArrayList<String> getGame(int userId) {
          ArrayList<String> l = new ArrayList<String>();
         Cursor<Library> cursor = libRepository.find(ObjectFilters.eq("userId",userId));
         for(Library lib : cursor)
             l.add(lib.getGameName());
+        return l;
+
+    }
+
+    public static ArrayList<String> getSearchedGame(String strname , int userId){
+        ArrayList<String> l = new ArrayList<>();
+        Cursor<Library> cursor = libRepository.find(ObjectFilters.eq("userId",userId));
+        for(Library lib : cursor)
+        {
+            if(lib.getGameName().toLowerCase().indexOf(strname.toLowerCase())!= -1)
+            l.add(lib.getGameName());
+        }
+
         return l;
 
     }
