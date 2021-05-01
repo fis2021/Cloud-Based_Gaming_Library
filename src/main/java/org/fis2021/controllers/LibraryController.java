@@ -27,7 +27,7 @@ public class LibraryController {
     private ListView<String> gameslist;
 
     @FXML
-    private Text libMessage;
+    private  Text libMessage;
 
     @FXML
     private Label userName;
@@ -46,10 +46,10 @@ public class LibraryController {
     }
 
     @FXML
-    public void addGameToLib() {
+    public  void addGameToLib(String gameName,int userId) {
         try {
 
-            LibraryService.addGame(gamenameField.getText(),user.getId());
+            LibraryService.addGame(gameName,userId);
             libMessage.setText("Game Added");
         } catch (GameAlreadyExistsException e) {
             libMessage.setText(e.getMessage());

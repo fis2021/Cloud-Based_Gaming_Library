@@ -37,6 +37,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
+            <Text fx:id="libMessage" layoutX="25.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="230.13669967651367" />
          </children>
       </Pane>
    </children>
