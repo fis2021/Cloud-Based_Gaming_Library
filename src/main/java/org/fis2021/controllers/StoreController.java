@@ -36,7 +36,7 @@ public class StoreController {
     }
 
 
-    public  void addGameToLibrary(String gameName,int userId) {
+    public  void addGameToLibrary(String gameName,String userId) {
         try {
 
             LibraryService.addGame(gameName,userId);

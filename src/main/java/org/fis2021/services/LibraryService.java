@@ -34,12 +34,12 @@ public class LibraryService {
         database.close();
     }
 
-    public static void addGame(String gameName, int userId) throws GameAlreadyExistsException {
+    public static void addGame(String gameName, String userId) throws GameAlreadyExistsException {
         checkGameAlreadyExist(gameName,userId);
         libRepository.insert(new Library(gameName, userId));
     }
 
-    private static void checkGameAlreadyExist(String gameName, int userId) throws GameAlreadyExistsException {
+    private static void checkGameAlreadyExist(String gameName, String userId) throws GameAlreadyExistsException {
         Library l = new Library(gameName,userId);
 
         for (Library lib : libRepository.find()) {
@@ -48,7 +48,7 @@ public class LibraryService {
         }
     }
 
-    public static ArrayList<String> getGame(int userId) {
+    public static ArrayList<String> getGame(String userId) {
          ArrayList<String> l = new ArrayList<String>();
         Cursor<Library> cursor = libRepository.find(ObjectFilters.eq("userId",userId));
         for(Library lib : cursor)
@@ -57,7 +57,7 @@ public class LibraryService {
 
     }
 
-    public static ArrayList<String> getSearchedGame(String strname , int userId){
+    public static ArrayList<String> getSearchedGame(String strname , String userId){
         ArrayList<String> l = new ArrayList<>();
         Cursor<Library> cursor = libRepository.find(ObjectFilters.eq("userId",userId));
         for(Library lib : cursor)

@@ -46,7 +46,7 @@ public class LibraryController {
     }
 
     @FXML
-    public  void addGameToLib(String gameName,int userId) {
+    public  void addGameToLib(String gameName,String userId) {
         try {
 
             LibraryService.addGame(gameName,userId);

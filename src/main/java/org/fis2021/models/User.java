@@ -5,12 +5,12 @@ public class User {
     private String username;
     private String password;
     private String role;
-    private int id;
+    private String id;
 
     public User() {
     }
 
-    public User(String username, String password, String role,int id) {
+    public User(String username, String password, String role,String id) {
         this.username = username;
         this.password = password;
         this.role = role;
@@ -41,7 +41,7 @@ public class User {
         this.role = role;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

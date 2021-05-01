@@ -8,14 +8,14 @@ import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.dizitart.no2.objects.Cursor;
 public class Library {
     private String gameName;
-    private int userId;
+    private String userId;
 
 
     public Library(){
 
     }
 
-    public Library(String gameName, int userId)
+    public Library(String gameName, String userId)
     {
         this.gameName = gameName;
         this.userId = userId;
@@ -26,7 +26,7 @@ public class Library {
         return gameName;
     }
 
-    public int getUserId(){
+    public String getUserId(){
         return  userId;
     }
 
@@ -36,7 +36,7 @@ public class Library {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Library library = (Library) o;
-        return gameName.equals(library.gameName) && userId == library.userId;
+        return gameName.equals(library.gameName) && userId.equals(library.userId);
     }
 
     @Override
