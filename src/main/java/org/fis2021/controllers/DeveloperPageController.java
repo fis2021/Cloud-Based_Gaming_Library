@@ -2,60 +2,61 @@ package org.fis2021.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.fis2021.exceptions.GameAlreadyExistsException;
-import org.fis2021.exceptions.NoGameFoundException;
+import org.fis2021.exceptions.GameAlreadyInStoreException;
 import org.fis2021.models.User;
 import org.fis2021.services.LibraryService;
-
+import org.fis2021.services.StoreService;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LibraryController {
+public class DeveloperPageController {
+
 
     @FXML
-    private TextField gamenameField;
+    private Label devname;
 
     @FXML
-    private ListView<String> gameslist;
+    private VBox vbox;
 
     @FXML
-    private  Text libMessage;
+    private ListView<String> devList;
 
     @FXML
-    private Label userName;
+    private TextField newGameName;
 
     @FXML
-    private TextField searchField;
+    private Text devMessage;
 
     private User user;
 
-    public LibraryController() throws NoGameFoundException {
-    }
-
-    public void setUser(User u) {
+    public void setUser(User u)
+    {
         user = u;
-        userName.setText(String.format("%s",user.getUsername()));
+        devname.setText(String.format("%s",user.getUsername()));
     }
 
     @FXML
-    public  void addGameToLib(String gameName,String userId) {
+    public void addGameToStore() {
         try {
 
-            LibraryService.addGame(gameName,userId);
-            libMessage.setText("Game Added");
-        } catch (GameAlreadyExistsException e) {
-            libMessage.setText(e.getMessage());
+            StoreService.addGame(newGameName.getText(),user.getId());
+            devMessage.setText("Game Added");
+        } catch (GameAlreadyInStoreException e) {
+            devMessage.setText(e.getMessage());
         }
     }
-
 
     ObservableList list = FXCollections.observableArrayList();
 
@@ -63,36 +64,21 @@ public class LibraryController {
     @FXML
     public void listInit() {
         list.removeAll(list);
-        ArrayList<String> libs = LibraryService.getGame(user.getId());
-        list.addAll(libs);
-        gameslist.getItems().addAll(list);
+        ArrayList<String> store = StoreService.getGame(user.getId());
+        list.addAll(store);
+        devList.getItems().addAll(list);
     }
 
     @FXML
     public void handleStoreAction() {
-        libMessage.setText("Store page will load now!");
+        devMessage.setText("Store page will load now!");
         openStore(user);
-    }
-
-
-    @FXML
-    public void searchList() throws NoGameFoundException{
-        list.removeAll(list);
-        ArrayList<String> libs = LibraryService.getSearchedGame(searchField.getText(), user.getId());
-        if(libs == null)
-            throw new NoGameFoundException();
-        else
-        {
-            list.addAll(libs);
-            gameslist.getItems().addAll(list);
-        }
-
     }
 
     @FXML
     private void openStore(User u) {
         try{
-            Stage stage = (Stage) libMessage.getScene().getWindow();
+            Stage stage = (Stage) devMessage.getScene().getWindow();
             FXMLLoader loader;
             Parent homeRoot;
             loader = new FXMLLoader(getClass().getResource("/fxml/StorePage.fxml"));
@@ -107,5 +93,6 @@ public class LibraryController {
             e.printStackTrace();
         }
     }
+
 
 }

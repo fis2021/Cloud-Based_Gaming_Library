@@ -36,12 +36,12 @@ public class StoreService {
         database.close();
     }
 
-    public static void addGame(String gameName, int devId) throws GameAlreadyInStoreException {
+    public static void addGame(String gameName, String devId) throws GameAlreadyInStoreException {
         checkGameInStore(gameName,devId);
         storeRepository.insert(new Store(gameName,devId));
         index ++;
     }
-    public static ArrayList<String> getGame(int devId) {
+    public static ArrayList<String> getGame(String devId) {
         ArrayList<String> s = new ArrayList<String>();
         Cursor<Store> cursor = storeRepository.find(ObjectFilters.eq("devId",devId));
         for(Store s1 : cursor)
@@ -59,7 +59,7 @@ public class StoreService {
         return list;
     }
 
-    private static void checkGameInStore(String gameName,int devId) throws GameAlreadyInStoreException {
+    private static void checkGameInStore(String gameName,String devId) throws GameAlreadyInStoreException {
         Store s = new Store(gameName,devId);
 
         for (Store store1 : storeRepository.find()) {

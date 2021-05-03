@@ -3,6 +3,7 @@ package org.fis2021.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteId;
+import org.dizitart.no2.objects.Id;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.fis2021.exceptions.UsernameAlreadyExistsException;
@@ -14,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
+import java.util.UUID;
 
 import static org.fis2021.services.FileSystemService.getPathToFile;
 
@@ -23,7 +25,8 @@ public class UserService {
 
     private static Nitrite database;
 
-    private static int id = 0;
+
+
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
                 .filePath(getPathToFile("cbglapp.db").toFile())
@@ -39,8 +42,9 @@ public class UserService {
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         checkUserOrPasswordIsNull(username,password);
-        userRepository.insert(new User(username, encodePassword(username, password), role,id));
-        id++;
+        UUID id = UUID.randomUUID();
+        userRepository.insert(new User(username, encodePassword(username, password), role,id.toString()));
+
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {

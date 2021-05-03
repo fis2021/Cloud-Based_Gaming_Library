@@ -7,11 +7,11 @@ import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.dizitart.no2.objects.Cursor;
 public class Store {
     private String gameName;
-    private int devId;
+    private String devId;
 
     public Store(){}
 
-    public Store(String gameName,int devId)
+    public Store(String gameName,String devId)
     {
         this.gameName = gameName;
         this.devId = devId;
@@ -21,7 +21,7 @@ public class Store {
     {
         return gameName;
     }
-    public int getDevId(){return devId;}
+    public String getDevId(){return devId;}
 
 
     @Override
@@ -29,13 +29,13 @@ public class Store {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Store store = (Store) o;
-        return gameName.equals(store.gameName) && devId == store.devId;
+        return gameName.equals(store.gameName) && devId.equals(store.devId);
     }
 
     @Override
     public String toString() {
         return "Store {" +
                 "gameName = '" + gameName + '\'' +
-        '}';
+                '}';
     }
 }

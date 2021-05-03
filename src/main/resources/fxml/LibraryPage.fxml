@@ -11,15 +11,15 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fis2021.controllers.LibraryController">
    <children>
-      <Button layoutX="1161.0" layoutY="663.0" mnemonicParsing="false" text="Go to Store" />
+      <Button layoutX="1161.0" layoutY="663.0" mnemonicParsing="false" onAction="#handleStoreAction" text="Go to Store" />
       <Label fx:id="userName" layoutX="80.0" layoutY="22.0" prefHeight="59.0" prefWidth="415.0" text="User's Name" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <TextField layoutX="793.0" layoutY="20.0" prefHeight="25.0" prefWidth="311.0" text="Search" />
-      <Button layoutX="1119.0" layoutY="20.0" mnemonicParsing="false" text="Search" />
-      <Button onAction="#listInit" layoutX="98.0" layoutY="593.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0" text="See my games" />
+      <TextField fx:id="searchField" layoutX="793.0" layoutY="20.0"  prefHeight="25.0" prefWidth="311.0" text="Search" />
+      <Button onAction="#searchList" layoutX="1119.0" layoutY="20.0" mnemonicParsing="false" text="Search" />
+      <Button layoutX="98.0" layoutY="593.0" mnemonicParsing="false" onAction="#listInit" prefHeight="25.0" prefWidth="144.0" text="See my games" />
       <VBox layoutX="42.0" layoutY="96.0" prefHeight="465.0" prefWidth="1202.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="My games" textAlignment="CENTER" wrappingWidth="1202.9366989135742">
@@ -30,5 +30,6 @@
             <ListView fx:id="gameslist" prefHeight="429.0" prefWidth="1203.0" />
          </children>
       </VBox>
+      <Text fx:id="libMessage" layoutX="98.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="445.33668518066406" />
    </children>
 </Pane>
