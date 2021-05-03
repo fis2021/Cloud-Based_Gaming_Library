@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -23,7 +24,12 @@
                   <Font size="27.0" />
                </font>
             </Text>
-            <ListView fx:id="devList" prefHeight="365.0" prefWidth="600.0" />
+            <HBox prefHeight="366.0" prefWidth="600.0">
+               <children>
+                  <ListView fx:id="devList" prefHeight="365.0" prefWidth="441.0" />
+                  <ListView fx:id="devList2" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </HBox>
          </children>
       </VBox>
       <Text layoutX="154.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Game" wrappingWidth="200.27005004882812">
@@ -37,17 +43,17 @@
          </font>
       </Text>
       <TextField fx:id="newGameName" layoutX="215.0" layoutY="240.0" />
-      <Button  onAction="#addGameToStore" layoutX="236.0" layoutY="286.0" mnemonicParsing="false" text="Send new game">
+      <Button layoutX="236.0" layoutY="286.0" mnemonicParsing="false" onAction="#addGameToStore" text="Send new game">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button onAction="#listInit" layoutX="667.0" layoutY="548.0" mnemonicParsing="false" text="View statistics">
+      <Button layoutX="667.0" layoutY="548.0" mnemonicParsing="false" onAction="#listInit" text="View statistics">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button onAction="#handleStoreAction" layoutX="1131.0" layoutY="656.0" mnemonicParsing="false" text="Go to Store">
+      <Button layoutX="1131.0" layoutY="656.0" mnemonicParsing="false" onAction="#handleStoreAction" text="Go to Store">
          <font>
             <Font size="18.0" />
          </font>

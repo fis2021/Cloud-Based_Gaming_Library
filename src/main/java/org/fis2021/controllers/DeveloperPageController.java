@@ -34,6 +34,9 @@ public class DeveloperPageController {
     private ListView<String> devList;
 
     @FXML
+    private ListView<Integer> devList2;
+
+    @FXML
     private TextField newGameName;
 
     @FXML
@@ -59,14 +62,18 @@ public class DeveloperPageController {
     }
 
     ObservableList list = FXCollections.observableArrayList();
+    ObservableList list2 = FXCollections.observableArrayList();
 
 
     @FXML
     public void listInit() {
-        list.removeAll(list);
-        ArrayList<String> store = StoreService.getGame(user.getId());
+        list.removeAll();
+        ArrayList<Integer> store = StoreService.getDloads(user.getId());
+        ArrayList<String> store2 = StoreService.getGame(user.getId());
         list.addAll(store);
-        devList.getItems().addAll(list);
+        devList2.getItems().addAll(list);
+        list2.addAll(store2);
+        devList.getItems().addAll(list2);
     }
 
     @FXML

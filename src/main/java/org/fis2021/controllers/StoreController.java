@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.fis2021.exceptions.GameAlreadyExistsException;
+import org.fis2021.exceptions.NoGameFoundException;
 import org.fis2021.models.User;
 import org.fis2021.services.LibraryService;
 import org.fis2021.services.StoreService;
@@ -68,8 +69,9 @@ public class StoreController {
                                    @Override
                                    public void handle(ActionEvent actionEvent) {
                                        addGameToLibrary(label.getText(), user.getId());
+                                       }
                                    }
-                               }
+
             );
             vbox.getChildren().addAll(label,button);
             grid.add(vbox,m,n);
