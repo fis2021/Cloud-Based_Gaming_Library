@@ -48,8 +48,20 @@ public class LibraryService {
         }
     }
 
+    public static int getDloads(String gameName)
+    {
+        int i = 0;
+        String s;
+        Cursor<Library> cursor = libRepository.find(ObjectFilters.eq("gameName",gameName));
+        for(Library lib : cursor) {
+            s = lib.getGameName();
+            i++;
+        }
+        return i;
+    }
+
     public static ArrayList<String> getGame(String userId) {
-         ArrayList<String> l = new ArrayList<String>();
+        ArrayList<String> l = new ArrayList<String>();
         Cursor<Library> cursor = libRepository.find(ObjectFilters.eq("userId",userId));
         for(Library lib : cursor)
             l.add(lib.getGameName());
@@ -63,7 +75,7 @@ public class LibraryService {
         for(Library lib : cursor)
         {
             if(lib.getGameName().toLowerCase().indexOf(strname.toLowerCase())!= -1)
-            l.add(lib.getGameName());
+                l.add(lib.getGameName());
         }
 
         return l;

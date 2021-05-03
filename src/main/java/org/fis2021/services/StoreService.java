@@ -5,11 +5,13 @@ import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import org.fis2021.exceptions.GameAlreadyInStoreException;
+import org.fis2021.exceptions.NoGameFoundException;
 import org.fis2021.exceptions.UsernameAlreadyExistsException;
 import org.fis2021.models.Library;
 import org.fis2021.models.Store;
 import org.dizitart.no2.objects.Cursor;
 import org.fis2021.models.User;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -22,7 +24,6 @@ public class StoreService {
     private static ObjectRepository<Store> storeRepository;
 
     private static Nitrite database;
-    private static int index = 0;
 
     public static void initDatabase(){
         Nitrite database = Nitrite.builder()
@@ -39,8 +40,19 @@ public class StoreService {
     public static void addGame(String gameName, String devId) throws GameAlreadyInStoreException {
         checkGameInStore(gameName,devId);
         storeRepository.insert(new Store(gameName,devId));
-        index ++;
     }
+
+
+    @NotNull
+    public static ArrayList<Integer> getDloads(String devId)
+    {
+        ArrayList<Integer> l = new ArrayList<>();
+        Cursor<Store> cursor = storeRepository.find(ObjectFilters.eq("devId",devId));
+        for(Store s : cursor)
+            l.add(LibraryService.getDloads(s.getGameName()));
+        return l;
+    }
+
     public static ArrayList<String> getGame(String devId) {
         ArrayList<String> s = new ArrayList<String>();
         Cursor<Store> cursor = storeRepository.find(ObjectFilters.eq("devId",devId));
@@ -68,8 +80,4 @@ public class StoreService {
         }
     }
 
-    public static int getIndex()
-    {
-        return index;
-    }
 }

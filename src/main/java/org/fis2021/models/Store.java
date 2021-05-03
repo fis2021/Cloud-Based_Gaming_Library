@@ -8,6 +8,7 @@ import org.dizitart.no2.objects.Cursor;
 public class Store {
     private String gameName;
     private String devId;
+    private int downloads;
 
     public Store(){}
 
@@ -22,7 +23,10 @@ public class Store {
         return gameName;
     }
     public String getDevId(){return devId;}
-
+    public int getDownloads(){return downloads;}
+    public void setDownloads(int dloads){
+        this.downloads = dloads + 1;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -31,6 +35,7 @@ public class Store {
         Store store = (Store) o;
         return gameName.equals(store.gameName) && devId.equals(store.devId);
     }
+
 
     @Override
     public String toString() {
