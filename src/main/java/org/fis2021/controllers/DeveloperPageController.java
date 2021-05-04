@@ -14,7 +14,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.fis2021.exceptions.GameAlreadyExistsException;
 import org.fis2021.exceptions.GameAlreadyInStoreException;
+import org.fis2021.exceptions.GameAlreadySentException;
 import org.fis2021.models.User;
+import org.fis2021.services.AdminService;
 import org.fis2021.services.LibraryService;
 import org.fis2021.services.StoreService;
 
@@ -51,19 +53,17 @@ public class DeveloperPageController {
     }
 
     @FXML
-    public void addGameToStore() {
+    public void sendGameToAdmin() {
         try {
-
-            StoreService.addGame(newGameName.getText(),user.getId());
-            devMessage.setText("Game Added");
-        } catch (GameAlreadyInStoreException e) {
+            AdminService.addGame(newGameName.getText(),user.getId());
+            devMessage.setText("Game Sent");
+        } catch (GameAlreadySentException e) {
             devMessage.setText(e.getMessage());
         }
     }
 
     ObservableList list = FXCollections.observableArrayList();
     ObservableList list2 = FXCollections.observableArrayList();
-
 
     @FXML
     public void listInit() {

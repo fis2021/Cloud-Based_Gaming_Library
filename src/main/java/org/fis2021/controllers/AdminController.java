@@ -10,49 +10,57 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.fis2021.exceptions.GameAlreadyExistsException;
+import org.fis2021.exceptions.GameAlreadyInStoreException;
 import org.fis2021.exceptions.NoGameFoundException;
 import org.fis2021.models.User;
+import org.fis2021.models.Admin;
+import org.fis2021.services.AdminService;
 import org.fis2021.services.LibraryService;
 import org.fis2021.services.StoreService;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class StoreController {
+import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
+
+
+public class AdminController {
 
     @FXML
-    private Text storeMessage;
+    private GridPane adminGridPane;
 
     @FXML
-    private GridPane grid;
+    private Text adminPageMessage;
 
     @FXML
-    private Label userName;
+    private Label adminWelcomeMessage;
 
     private User user;
     public void setUser(User u) {
+
         user = u;
-        userName.setText(String.format("Welcome %s to the store!",user.getUsername()));
+        adminWelcomeMessage.setText(String.format("Welcome %s!",user.getUsername()));
     }
 
-    public  void addGameToLibrary(String gameName,String userId) {
+    @FXML
+    public void addGameToStore(String gameName, String devId) {
         try {
-
-            LibraryService.addGame(gameName,userId);
-            storeMessage.setText("Game Added");
-        } catch (GameAlreadyExistsException e) {
-            storeMessage.setText(e.getMessage());
+            StoreService.addGame(gameName,devId);
+            AdminService.removeGame(gameName);
+            adminPageMessage.setText("Game Added");
+        } catch (GameAlreadyInStoreException e) {
+            adminPageMessage.setText(e.getMessage());
         }
     }
 
     @FXML
-    public void initStore()
+    public void initGames()
     {
-        storeMessage.setText("Store has been initialized");
+        adminPageMessage.setText("The games list has been initialized!");
 
-        ArrayList<String> list = StoreService.getAllGames();
+        ArrayList<Admin> list = AdminService.getAllGames();
         int n,m;
-        Iterator<String> it = list.iterator();
+        Iterator<Admin> it = list.iterator();
         n=0;
         m=1;
 
@@ -61,17 +69,18 @@ public class StoreController {
             VBox vbox = new VBox();
             vbox.setAlignment(Pos.CENTER);
             Label label = new Label();
-            label.setText(String.format("%s",it.next()));
-            Button button = new Button("Add To Lib");
+            Admin admin1 = it.next();
+            label.setText(String.format("%s",admin1.getGameName()));
+            Button button = new Button("Add To Store");
             button.setOnAction(new EventHandler<ActionEvent>() {
                                    @Override
                                    public void handle(ActionEvent actionEvent) {
-                                       addGameToLibrary(label.getText(), user.getId());
+                                       addGameToStore(admin1.getGameName(), admin1.getDevId());
                                    }
                                }
             );
             vbox.getChildren().addAll(label,button);
-            grid.add(vbox,m,n);
+            adminGridPane.add(vbox,m,n);
             m++;
             if(m==4)
             {
@@ -81,4 +90,6 @@ public class StoreController {
 
         }
     }
+
+
 }

@@ -43,7 +43,7 @@
          </font>
       </Text>
       <TextField fx:id="newGameName" layoutX="215.0" layoutY="240.0" />
-      <Button layoutX="236.0" layoutY="286.0" mnemonicParsing="false" onAction="#addGameToStore" text="Send new game">
+      <Button layoutX="236.0" layoutY="286.0" mnemonicParsing="false" onAction="#sendGameToAdmin" text="Send new game">
          <font>
             <Font size="15.0" />
          </font>
