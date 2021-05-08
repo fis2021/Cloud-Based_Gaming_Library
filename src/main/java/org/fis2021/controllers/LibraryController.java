@@ -45,17 +45,6 @@ public class LibraryController {
         userName.setText(String.format("%s",user.getUsername()));
     }
 
-    @FXML
-    public  void addGameToLib(String gameName,String userId) {
-        try {
-
-            LibraryService.addGame(gameName,userId);
-            libMessage.setText("Game Added");
-        } catch (GameAlreadyExistsException e) {
-            libMessage.setText(e.getMessage());
-        }
-    }
-
 
     ObservableList list = FXCollections.observableArrayList();
 
@@ -106,6 +95,53 @@ public class LibraryController {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void backButtonAction() {
+        User user1 = this.user;
+        Stage stage = (Stage) libMessage.getScene().getWindow();
+        FXMLLoader loader;
+        Parent homeRoot = null;
+        switch (user1.getRole()){
+
+            case "Developer":
+                loader = new FXMLLoader(getClass().getResource("/fxml/Devs_First_Page.fxml"));
+                try {
+                    homeRoot = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                DevsFirstPageController controller = loader.getController();
+                controller.setUser(user1);
+                break;
+            case "Admin":
+                loader = new FXMLLoader(getClass().getResource("/fxml/Admins_First_Page.fxml"));
+                try {
+                    homeRoot = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                AdminsFirstPageController  controller2 = loader.getController();
+                controller2.setUser(user1);
+                break;
+            case "User":
+                loader = new FXMLLoader(getClass().getResource("/fxml/FirstPage.fxml"));
+                try {
+                    homeRoot = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                FirstPageController controller3 = loader.getController();
+                controller3.setUser(user1);
+                break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + user1.getRole());
+        }
+        Scene scene = new Scene(homeRoot, 1280, 718);
+        stage.setTitle("CBGL - FirstPage");
+        stage.setScene(scene);
     }
 
 }

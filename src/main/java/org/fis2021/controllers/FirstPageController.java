@@ -74,4 +74,20 @@ public class FirstPageController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void logOutHandle ()
+    {
+        Stage stage = (Stage) firstPageMessage.getScene().getWindow();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setTitle("Cloud-Based Gaming Library - Login");
+        stage.setScene(new Scene(root, 840, 560));
+        stage.setResizable(false);
+        stage.show();
+    }
 }
