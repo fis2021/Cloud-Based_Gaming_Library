@@ -19,7 +19,7 @@
             </image>
         </ImageView>
 
-        <Button onAction="#handleDevPageAction" layoutX="211.0" layoutY="309.0" mnemonicParsing="false" text="Go to Developer Page">
+        <Button layoutX="211.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleDevPageAction" text="Go to Developer Page">
             <font>
                 <Font size="40.0" />
             </font>
@@ -55,5 +55,10 @@
             </font>
         </Label>
       <Text fx:id="devMessage" layoutX="62.0" layoutY="639.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="560.803337097168" />
+      <Button layoutX="677.0" layoutY="518.0" mnemonicParsing="false" text="Log Out" onAction="#logOutHandle">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
     </children>
 </Pane>
