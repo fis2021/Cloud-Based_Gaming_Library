@@ -9,12 +9,13 @@ import org.fis2021.exceptions.GameAlreadyExistsException;
 import org.fis2021.exceptions.NoGameFoundException;
 import org.fis2021.models.Library;
 import org.dizitart.no2.objects.Cursor;
-
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 
 import static org.fis2021.services.FileSystemService.getPathToFile;
+import static org.fis2021.services.FileSystemService.getTestPathToFile;
 
 public class LibraryService {
 
@@ -23,8 +24,16 @@ public class LibraryService {
     private static Nitrite database;
 
     public static void initDatabase(){
-        Nitrite database = Nitrite.builder()
+         database = Nitrite.builder()
                 .filePath(getPathToFile("cbglapp-library.db").toFile())
+                .openOrCreate("admin", "admin");
+
+        libRepository = database.getRepository(Library.class);
+    }
+
+    public static void initTestDatabase(){
+        database = Nitrite.builder()
+                .filePath(getTestPathToFile("cbglapp-library.db").toFile())
                 .openOrCreate("admin", "admin");
 
         libRepository = database.getRepository(Library.class);
@@ -46,6 +55,11 @@ public class LibraryService {
             if (Objects.equals(l, lib))
                 throw new GameAlreadyExistsException(gameName);
         }
+    }
+
+    public static List<Library> getAllGames()
+    {
+        return libRepository.find().toList();
     }
 
     public static int getDloads(String gameName)

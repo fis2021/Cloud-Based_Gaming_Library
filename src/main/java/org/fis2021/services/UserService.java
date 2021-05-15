@@ -12,12 +12,15 @@ import org.fis2021.models.User;
 import org.dizitart.no2.objects.Cursor;
 
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 import static org.fis2021.services.FileSystemService.getPathToFile;
+import static org.fis2021.services.FileSystemService.getTestPathToFile;
 
 public class UserService {
 
@@ -28,12 +31,22 @@ public class UserService {
 
 
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+         database = Nitrite.builder()
                 .filePath(getPathToFile("cbglapp.db").toFile())
                 .openOrCreate("admin", "admin");
 
         userRepository = database.getRepository(User.class);
     }
+
+    public static void initTestDatabase() {
+        database = Nitrite.builder()
+                .filePath(getTestPathToFile("cbglapp.db").toFile())
+                .openOrCreate("admin", "admin");
+
+        userRepository = database.getRepository(User.class);
+    }
+
+
 
     public static void closeDatabase(){
         database.close();
@@ -52,6 +65,11 @@ public class UserService {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
         }
+    }
+
+    public static List<User> getAllUsers()
+    {
+        return userRepository.find().toList();
     }
 
     public static User getUser(String username) throws UsernameNotFoundException {

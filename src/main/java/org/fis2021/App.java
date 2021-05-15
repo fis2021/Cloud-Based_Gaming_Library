@@ -10,12 +10,12 @@ import org.fis2021.services.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-
+import java.nio.file.Paths;
 public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        initDirectory();
+        FileSystemService.initDirectory();
         UserService.initDatabase();
         LibraryService.initDatabase();
         StoreService.initDatabase();
@@ -27,11 +27,7 @@ public class App extends Application {
         stage.show();
     }
 
-    private void initDirectory() {
-        Path applicationHomePath = FileSystemService.APPLICATION_HOME_PATH;
-        if (!Files.exists(applicationHomePath))
-            applicationHomePath.toFile().mkdirs();
-    }
+
 
     public static void main(String[] args) {
         launch();
