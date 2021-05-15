@@ -41,7 +41,7 @@
       </Label>
       <PasswordField fx:id="passwordField" id="password" layoutX="191.0" layoutY="369.0" />
       <ChoiceBox fx:id="role" id="role" layoutX="190.0" layoutY="414.0" prefWidth="150.0" />
-      <Button layoutX="270.0" layoutY="457.0" mnemonicParsing="false" onAction="#handleRegisterAction" text="Register">
+      <Button layoutX="270.0" layoutY="457.0" mnemonicParsing="false" onAction="#handleRegisterAction" id="registerButton" text="Register">
          <font>
             <Font size="14.0" />
          </font>
@@ -50,7 +50,7 @@
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Button layoutX="193.0" layoutY="494.0" mnemonicParsing="false" onAction="#goToLoginAction" id="registerButton" text="Go to Login">
+      <Button layoutX="193.0" layoutY="494.0" mnemonicParsing="false" onAction="#goToLoginAction"  text="Go to Login">
          <font>
             <Font size="15.0" />
          </font>
