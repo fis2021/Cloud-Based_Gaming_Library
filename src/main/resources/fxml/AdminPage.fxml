@@ -9,26 +9,26 @@
 <?import javafx.scene.text.Text?>
 
 <GridPane fx:id="adminGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fis2021.controllers.AdminController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <Pane prefHeight="270.0" prefWidth="150.0" GridPane.rowSpan="3">
-         <children>
-            <Button layoutX="6.0" layoutY="226.0" mnemonicParsing="false" onAction="#initGames" prefHeight="25.0" prefWidth="91.0" text="Init Games list" />
-            <Button layoutX="102.0" layoutY="226.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="25.0" prefWidth="43.0" text="Back" />
-            <Text fx:id="adminPageMessage" layoutX="64.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text layoutX="66.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Label fx:id="adminWelcomeMessage" layoutX="9.0" layoutY="68.0" prefHeight="36.0" prefWidth="137.0" />
-         </children>
-      </Pane>
-   </children>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Pane prefHeight="270.0" prefWidth="150.0" GridPane.rowSpan="3">
+            <children>
+                <Button layoutX="6.0" layoutY="226.0" mnemonicParsing="false" onAction="#initGames" prefHeight="25.0" prefWidth="91.0" id="initGameList" text="Init Games list" />
+                <Button layoutX="102.0" layoutY="226.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="25.0" prefWidth="43.0" id="backButton" text="Back" />
+                <Text fx:id="adminPageMessage" layoutX="64.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                <Text layoutX="66.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                <Label fx:id="adminWelcomeMessage" layoutX="9.0" layoutY="68.0" prefHeight="36.0" prefWidth="137.0" />
+            </children>
+        </Pane>
+    </children>
 </GridPane>

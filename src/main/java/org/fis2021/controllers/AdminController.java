@@ -77,6 +77,7 @@ public class AdminController {
             Admin admin1 = it.next();
             label.setText(String.format("%s",admin1.getGameName()));
             Button button = new Button("Add To Store");
+            button.setId(label.getText());
             button.setOnAction(new EventHandler<ActionEvent>() {
                                    @Override
                                    public void handle(ActionEvent actionEvent) {

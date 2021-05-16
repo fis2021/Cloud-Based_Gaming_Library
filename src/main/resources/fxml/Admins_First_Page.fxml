@@ -19,7 +19,7 @@
             </image>
         </ImageView>
 
-        <Button layoutX="211.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleAdminAction" text="Go to AdminPage">
+        <Button layoutX="211.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleAdminAction" id="goToAdminPage" text="Go to AdminPage">
             <font>
                 <Font size="40.0" />
             </font>
@@ -34,7 +34,7 @@
                 </Lighting>
             </effect>
         </Button>
-        <Button layoutX="815.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleStoreAction" text="Go to Store">
+        <Button layoutX="815.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleStoreAction" id="goToStore" text="Go to Store">
             <font>
                 <Font size="40.0" />
             </font>
@@ -54,11 +54,11 @@
                 <Font size="50.0" />
             </font>
         </Label>
-      <Text fx:id="adminMessage" layoutX="562.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="167.13671875" />
-      <Button layoutX="646.0" layoutY="497.0" mnemonicParsing="false" text="Log Out" onAction="#logOutHandle">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
+        <Text fx:id="adminMessage" layoutX="562.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="167.13671875" />
+        <Button layoutX="646.0" layoutY="497.0" mnemonicParsing="false" text="Log Out" id="logOut" onAction="#logOutHandle">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
     </children>
 </Pane>

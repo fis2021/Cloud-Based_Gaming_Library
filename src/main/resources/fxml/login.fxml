@@ -39,14 +39,14 @@
                 <Font size="20.0" />
             </font>
         </Button>
-        <Text fx:id="loginMessage" fill="WHITE" layoutX="200.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="451.5367431640625">
+        <Text fx:id="loginMessage" id="loginMessage" fill="WHITE" layoutX="200.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="451.5367431640625">
             <font>
                 <Font size="20.0" />
             </font></Text>
-      <Button layoutX="260.0" layoutY="440.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" id="register" onAction="#goToRegisterAction" text="Register">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
+        <Button layoutX="260.0" layoutY="440.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" id="register" onAction="#goToRegisterAction" text="Register">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Button>
     </children>
 </Pane>
