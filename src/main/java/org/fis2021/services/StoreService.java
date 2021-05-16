@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import static org.fis2021.services.FileSystemService.getPathToFile;
+import static org.fis2021.services.FileSystemService.getTestPathToFile;
 
 public class StoreService {
 
@@ -26,8 +27,16 @@ public class StoreService {
     private static Nitrite database;
 
     public static void initDatabase(){
-        Nitrite database = Nitrite.builder()
+         database = Nitrite.builder()
                 .filePath(getPathToFile("cbglapp-store.db").toFile())
+                .openOrCreate("admin", "admin");
+
+        storeRepository = database.getRepository(Store.class);
+    }
+
+    public static void initTestDatabase(){
+         database = Nitrite.builder()
+                .filePath(getTestPathToFile("cbglapp-store.db").toFile())
                 .openOrCreate("admin", "admin");
 
         storeRepository = database.getRepository(Store.class);

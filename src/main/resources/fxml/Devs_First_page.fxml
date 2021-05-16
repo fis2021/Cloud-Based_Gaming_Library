@@ -19,7 +19,7 @@
             </image>
         </ImageView>
 
-        <Button layoutX="211.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleDevPageAction" text="Go to Developer Page">
+        <Button layoutX="211.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleDevPageAction" id="goDevPage" text="Go to Developer Page">
             <font>
                 <Font size="40.0" />
             </font>
@@ -34,7 +34,7 @@
                 </Lighting>
             </effect>
         </Button>
-        <Button layoutX="815.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleStoreAction" text="Go to Store">
+        <Button layoutX="815.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleStoreAction" id="goStore" text="Go to Store">
             <font>
                 <Font size="40.0" />
             </font>

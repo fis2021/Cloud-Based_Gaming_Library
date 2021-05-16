@@ -21,6 +21,7 @@ import java.util.Objects;
 
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 import static org.fis2021.services.FileSystemService.getPathToFile;
+import static org.fis2021.services.FileSystemService.getTestPathToFile;
 
 public class AdminService {
 
@@ -29,8 +30,15 @@ public class AdminService {
     private static Nitrite database;
 
     public static void initDatabase(){
-        Nitrite database = Nitrite.builder()
+         database = Nitrite.builder()
                 .filePath(getPathToFile("cbglapp-admin.db").toFile())
+                .openOrCreate("admin", "admin");
+
+        adminRepository = database.getRepository(Admin.class);
+    }
+    public static void initTestDatabase(){
+        database = Nitrite.builder()
+                .filePath(getTestPathToFile("cbglapp-admin.db").toFile())
                 .openOrCreate("admin", "admin");
 
         adminRepository = database.getRepository(Admin.class);

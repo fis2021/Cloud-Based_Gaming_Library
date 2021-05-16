@@ -42,18 +42,18 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="newGameName" layoutX="215.0" layoutY="240.0" />
-      <Button layoutX="236.0" layoutY="286.0" mnemonicParsing="false" onAction="#sendGameToAdmin" text="Send new game">
+      <TextField fx:id="newGameName" id="gameName" layoutX="215.0" layoutY="240.0" />
+      <Button layoutX="236.0" layoutY="286.0" mnemonicParsing="false" onAction="#sendGameToAdmin" id="sendGameToAdmin" text="Send new game">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button layoutX="667.0" layoutY="548.0" mnemonicParsing="false" onAction="#listInit" text="View statistics">
+      <Button layoutX="667.0" layoutY="548.0" mnemonicParsing="false" onAction="#listInit" id="viewStatistics" text="View statistics">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button layoutX="1131.0" layoutY="656.0" mnemonicParsing="false" onAction="#handleStoreAction" text="Go to Store">
+      <Button layoutX="1131.0" layoutY="656.0" mnemonicParsing="false" onAction="#handleStoreAction" id="goStore" text="Go to Store">
          <font>
             <Font size="18.0" />
          </font>
